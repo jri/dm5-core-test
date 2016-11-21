@@ -1,12 +1,9 @@
 package de.deepamehta.core;
 
-import de.deepamehta.core.model.SimpleValue;
-import de.deepamehta.core.model.TopicModel;
 import dm5.core.DeepaMehtaStorage;
 import dm5.core.DatomicStorage;
 
 import clojure.java.api.Clojure;
-import clojure.lang.IFn;
 
 import datomic.query.EntityMap;
 
@@ -19,7 +16,6 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import java.util.Map;
 import java.util.logging.Logger;
 
 
@@ -33,9 +29,8 @@ public class DM5CoreTest {
     }
 
     @Test
-    public void newTopicModel() {
+    public void storeTopic() {
         DeepaMehtaStorage db = new DatomicStorage();
-        db.installSchema("../dm5-core/resources/dm5-core-schema.edn");
         //
         long id = (Long) db.storeTopic("my.uri", "dm5.person", "Rich Hickey");
         EntityMap topic = (EntityMap) db.fetchTopic(id);
